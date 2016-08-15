@@ -577,8 +577,6 @@ ngx_mail_proxy_smtp_handler(ngx_event_t *rev)
             return;
         }
 
-        pcf = ngx_mail_get_module_srv_conf(s, ngx_mail_proxy_module);
-
         p = ngx_cpymem(line.data, base64_username.data, base64_username.len);
         *p++ = CR; *p = LF;
 
@@ -607,9 +605,7 @@ ngx_mail_proxy_smtp_handler(ngx_event_t *rev)
             ngx_mail_proxy_internal_server_error(s);
             return;
         }
-
-        pcf = ngx_mail_get_module_srv_conf(s, ngx_mail_proxy_module);
-
+        
         p = ngx_cpymem(line.data, base64_password.data, base64_password.len);
         *p++ = CR; *p = LF;
 
